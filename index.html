@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pyrix MC - Premium Minecraft Server</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Custom CSS for animations and elements Tailwind can't handle easily */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+        
+        .minecraft-button {
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.1s;
+        }
+        
+        .minecraft-button:hover {
+            transform: translateY(-2px);
+        }
+        
+        .minecraft-button:active {
+            transform: translateY(1px);
+        }
+        
+        .minecraft-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        .cart-notification {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: #f56565;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .rank-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.rank-card .p-6 {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.rank-card .p-6 ul {
+    flex-grow: 1; /* pushes the button down */
+}
+
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100 font-sans">
+    <!-- Navigation -->
+    <nav class="bg-gray-800 sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-2">
+                    <img src="https://cdn.discordapp.com/attachments/1353425249839878156/1403589567499730954/IMG_6658-removebg-preview.png?ex=68981a26&is=6896c8a6&hm=952e30e5ef433fa79ab8ec563d69ba3c0d7f77d65c595a4d4d83db4bd65f7913&" alt="Pyrix MC Logo" class="h-10">
+                    <span class="text-2xl font-bold text-green-400">Pyrix MC</span>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-6">
+    <a href="#home" class="scroll-link text-green-300 hover:text-green-400 transition">Home</a>
+    <a href="#features" class="scroll-link text-gray-300 hover:text-green-400 transition">Features</a>
+    <a href="#store" class="scroll-link text-gray-300 hover:text-green-400 transition">Store</a>
+    <a href="#about" class="scroll-link text-gray-300 hover:text-green-400 transition">About</a>
+    <a href="https://discord.gg/cRA9HXu5aV" target="_blank" rel="noopener noreferrer" class="scroll-link text-gray-300 hover:text-green-400 transition">
+    Contact
+</a>
+</div>
+
+<script>
+document.querySelectorAll('.scroll-link').forEach(link => {
+    link.addEventListener('click', function (e) {
+        e.preventDefault(); // stop default jump
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+        }
+    });
+});
+</script>
+
+                
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <button id="cart-button" class="text-gray-300 hover:text-green-400 transition">
+                            <i class="fas fa-shopping-cart text-xl"></i>
+                            <div id="cart-count" class="cart-notification hidden">0</div>
+                        </button>
+                    </div>
+                    <button class="md:hidden text-gray-300 focus:outline-none" id="mobile-menu-button">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile menu -->
+            <div class="md:hidden hidden py-2" id="mobile-menu">
+                <a href="#home" class="block py-2 px-4 text-gray-300 hover:bg-gray-700 hover:text-green-400">Home</a>
+                <a href="#features" class="block py-2 px-4 text-gray-300 hover:bg-gray-700 hover:text-green-400">Features</a>
+                <a href="#store" class="block py-2 px-4 text-gray-300 hover:bg-gray-700 hover:text-green-400">Store</a>
+                <a href="#about" class="block py-2 px-4 text-gray-300 hover:bg-gray-700 hover:text-green-400">About</a>
+                <a href="#contact" class="block py-2 px-4 text-gray-300 hover:bg-gray-700 hover:text-green-400">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="parallax bg-[url('https://cdn.discordapp.com/attachments/1353425249839878156/1403744620466409534/76fe2d_1e58854193314126a7e38dccb0378bdcmv2.avif?ex=6898aa8d&is=6897590d&hm=2020f307a909e3830587d5a75a6b98778f61ddb6a49bf7641bdf10729babd19c&')] min-h-screen flex items-center relative">
+        <div class="absolute inset-0 bg-black bg-opacity-70"></div>
+        <div class="container mx-auto px-4 z-10 py-20">
+            <div class="max-w-3xl fade-in">
+                <h1 class="text-5xl md:text-6xl font-bold mb-4 text-green-400">Welcome to Pyrix MC</h1>
+                <p class="text-xl md:text-2xl mb-8 text-gray-300">The ultimate Minecraft survival experience with custom features, events, and an amazing community!</p>
+                <div class="flex flex-wrap gap-4">
+                    <button id="copyIpBtn" class="minecraft-button bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-bold">
+    <i class="fas fa-play mr-2"></i> Join Now
+</button>
+
+<script>
+document.getElementById('copyIpBtn').addEventListener('click', function () {
+    const ip = 'pyrix.falixsrv.me';
+    navigator.clipboard.writeText(ip).then(() => {
+        const originalText = this.innerHTML;
+        this.innerHTML = '<i class="fas fa-check mr-2"></i> IP Copied to Clipboard';
+        this.disabled = true;
+
+        //revert after 2 seconds
+        setTimeout(() => {
+            this.innerHTML = originalText;
+            this.disabled = false;
+        }, 2000);
+    });
+});
+</script>
+
+                    <button id="storeButton" class="minecraft-button bg-gray-700 hover:bg-gray-600 text-white px-6 py-3 rounded-lg font-bold">
+    <i class="fas fa-store mr-2"></i> Visit Store
+</button>
+
+<script>
+document.getElementById('storeButton').addEventListener('click', () => {
+    const target = document.querySelector('#store');
+    if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+    }
+});
+</script>
+
+                </div>
+                <div class="mt-8 bg-gray-800 bg-opacity-80 p-4 rounded-lg">
+                    <h3 class="text-xl font-semibold mb-2 text-green-300">Server Status: <span class="text-green-400">Online</span></h3>
+                    <p class="text-gray-300"><span class="font-semibold">IP:</span> pyrix.falixsrv.me</p>
+                    <p class="text-gray-300"><span class="font-semibold">Version:</span> 1.8.9 - 1.25</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-16 bg-gray-800">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12 text-green-400">Server Features</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-gray-700 p-6 rounded-lg hover:bg-gray-600 transition duration-300 transform hover:-translate-y-1">
+                    <div class="text-green-400 text-4xl mb-4">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-3">Custom Cosmetics</h3>
+                    <p class="text-gray-300">Gain well crafted cosmetics for free by winning games and getting kills!</p>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="bg-gray-700 p-6 rounded-lg hover:bg-gray-600 transition duration-300 transform hover:-translate-y-1">
+                    <div class="text-green-400 text-4xl mb-4">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-3">Weekly Events</h3>
+                    <p class="text-gray-300">Participate in exciting weekly events with amazing prizes. From PvP tournaments to building competitions!</p>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="bg-gray-700 p-6 rounded-lg hover:bg-gray-600 transition duration-300 transform hover:-translate-y-1">
+                    <div class="text-green-400 text-4xl mb-4">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-3">Friendly Community</h3>
+                    <p class="text-gray-300">Join our welcoming community of players. We have active staff and Discord to help you get started.</p>
+                </div>
+                
+                <!-- Feature 4 -->
+                <div class="bg-gray-700 p-6 rounded-lg hover:bg-gray-600 transition duration-300 transform hover:-translate-y-1">
+                    <div class="text-green-400 text-4xl mb-4">
+                        <i class="fas fa-magic"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-3">Custom Plugins</h3>
+                    <p class="text-gray-300">Experience unique gameplay with our custom-developed plugins that enhance your Minecraft experience.</p>
+                </div>
+                
+                <!-- Feature 5 -->
+                <div class="bg-gray-700 p-6 rounded-lg hover:bg-gray-600 transition duration-300 transform hover:-translate-y-1">
+                    <div class="text-green-400 text-4xl mb-4">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-3">Secure & Lag-Free</h3>
+                    <p class="text-gray-300">Premium server hardware with DDoS protection ensures smooth gameplay with no lag or interruptions.</p>
+                </div>
+                
+                <!-- Feature 6 -->
+                <div class="bg-gray-700 p-6 rounded-lg hover:bg-gray-600 transition duration-300 transform hover:-translate-y-1">
+                    <div class="text-green-400 text-4xl mb-4">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-3">Player Ranks</h3>
+                    <p class="text-gray-300">Earn special ranks and perks through gameplay or support the server by purchasing premium ranks.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Store Section -->
+    <section id="store" class="py-16 bg-gray-900">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-4 text-green-400">Server Store</h2>
+            <p class="text-xl text-center mb-12 text-gray-400">Support the server and get awesome perks!</p>
+            
+            <!-- Store Navigation -->
+            <div class="flex justify-center mb-8">
+                <div class="inline-flex rounded-md shadow-sm">
+                    <button data-category="ranks" class="store-category-btn px-4 py-2 text-sm font-medium rounded-l-lg bg-green-600 text-white">
+                        <i class="fas fa-crown mr-2"></i> Ranks
+                    </button>
+                    <button data-category="coins" class="store-category-btn px-4 py-2 text-sm font-medium rounded-r-lg bg-yellow-700 hover:bg-gray-600 text-gray-300">
+                        <i class="fas fa-coins mr-2"></i> Coins
+                    </button>
+                    <!--<button data-category="cosmetics" class="store-category-btn px-4 py-2 text-sm font-medium bg-gray-700 hover:bg-gray-600 text-gray-300">
+                        <i class="fas fa-tshirt mr-2"></i> Cosmetics
+                    </button>-->
+                    <!--<button data-category="bundles" class="store-category-btn px-4 py-2 text-sm font-medium rounded-r-lg bg-gray-700 hover:bg-gray-600 text-gray-300">
+                        <i class="fas fa-box-open mr-2"></i> Bundles
+                    </button>-->
+                </div>
+            </div>
+            
+            <!-- Store Items (Ranks) -->
+            <div id="ranks" class="store-category grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Rank 1 -->
+                <div class="rank-card bg-gray-800 rounded-lg overflow-hidden shadow-lg transform transition hover:scale-105">
+                    <div class="bg-green-800 p-4">
+                        <h3 class="text-2xl font-bold text-center text-white">VIP Rank</h3>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-center mb-4">
+                            <span class="text-3xl font-bold text-green-400">$5.99</span>
+                        </div>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-400 mt-1 mr-2"></i>
+                                <span>Access to /hat command</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-400 mt-1 mr-2"></i>
+                                <span>XP Multiplier in BedWars</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-400 mt-1 mr-2"></i>
+                                <span>Custom colored name</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-400 mt-1 mr-2"></i>
+                                <span>+5,000 coins</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-400 mt-1 mr-2"></i>
+                                <span>Custom chat prefix</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-400 mt-1 mr-2"></i>
+                                <span>Custom discord role</span>
+                            </li>
+                        </ul>
+                       <button 
+    class="add-to-cart w-full minecraft-button bg-green-600 hover:bg-green-700 text-white py-3 rounded font-bold transition" 
+    data-item="Stone Rank" 
+    data-price="5.99" 
+    onclick="window.location.href='https://pyrixmc.mysellauth.com/checkout/63b1cbb2a5258-0000006029558'">
+    <i class="fas fa-cart-plus mr-2"></i> Add to Cart
+</button>
+
+                    </div>
+                </div>
+                
+                <!-- Rank 2 -->
+                <div class="rank-card bg-gray-800 rounded-lg overflow-hidden shadow-lg transform transition hover:scale-105">
+                    <div class="bg-blue-800 p-4">
+                        <h3 class="text-2xl font-bold text-center text-white">MVP Rank</h3>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-center mb-4">
+                            <span class="text-3xl font-bold text-blue-400">$14.99</span>
+                        </div>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-blue-400 mt-1 mr-2"></i>
+                                <span>All VIP Rank perks</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-blue-400 mt-1 mr-2"></i>
+                                <span>Exclusive Seasonal Cosmetic Rewards</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-blue-400 mt-1 mr-2"></i>
+                                <span>Access to /fly</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-blue-400 mt-1 mr-2"></i>
+                                <span>+15,000 coins</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-blue-400 mt-1 mr-2"></i>
+                                <span>Exclusive particle effects & trails</span>
+                            </li>
+                        </ul>
+                        <button 
+    class="add-to-cart w-full minecraft-button bg-green-600 hover:bg-green-700 text-white py-3 rounded font-bold transition" 
+    data-item="Stone Rank" 
+    data-price="5.99" 
+    onclick="window.location.href='https://pyrixmc.mysellauth.com/checkout/598a903e2766e-0000006029570'">
+    <i class="fas fa-cart-plus mr-2"></i> Add to Cart
+</button>
+                    </div>
+                </div>
+                
+                <!-- Rank 3 -->
+                <div class="rank-card bg-gray-800 rounded-lg overflow-hidden shadow-lg transform transition hover:scale-105">
+                    <div class="bg-purple-800 p-4">
+                        <h3 class="text-2xl font-bold text-center text-white">MVP+</h3>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-center mb-4">
+                            <span class="text-3xl font-bold text-purple-400">$29.99</span>
+                            <p class="text-sm text-yellow-400 mt-1">BEST VALUE</p>
+                        </div>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-purple-400 mt-1 mr-2"></i>
+                                <span>All MVP Rank perks</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-purple-400 mt-1 mr-2"></i>
+                                <span>Custom Kill Messages</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-purple-400 mt-1 mr-2"></i>
+                                <span>Ability to host events</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-purple-400 mt-1 mr-2"></i>
+                                <span>+50,000 coins</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-purple-400 mt-1 mr-2"></i>
+                                <span>Exclusive pets</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-purple-400 mt-1 mr-2"></i>
+                                <span>Priority support</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-purple-400 mt-1 mr-2"></i>
+                                <span>Create your own guild</span>
+                            </li>
+                        </ul>
+                        <button 
+    class="add-to-cart w-full minecraft-button bg-green-600 hover:bg-green-700 text-white py-3 rounded font-bold transition" 
+    data-item="Stone Rank" 
+    data-price="5.99" 
+    onclick="window.location.href='https://pyrixmc.mysellauth.com/checkout/e95c63126a369-0000006029578'">
+    <i class="fas fa-cart-plus mr-2"></i> Add to Cart
+</button>
+                    </div>
+                </div>
+                
+                <!-- Rank 4 -->
+                <div class="rank-card bg-gray-800 rounded-lg overflow-hidden shadow-lg transform transition hover:scale-105">
+                    <div class="bg-yellow-700 p-4">
+                        <h3 class="text-2xl font-bold text-center text-white">MVP++ Rank</h3>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-center mb-4">
+                            <span class="text-3xl font-bold text-yellow-400">$49.99</span>
+                        </div>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-yellow-400 mt-1 mr-2"></i>
+                                <span>All Diamond Rank perks</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-yellow-400 mt-1 mr-2"></i>
+                                <span>Access to Private Games </span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-yellow-400 mt-1 mr-2"></i>
+                                <span>Extra Daily Coin Bonus [10 000]</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-yellow-400 mt-1 mr-2"></i>
+                                <span>+100,000 coins</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-yellow-400 mt-1 mr-2"></i>
+                                <span>Double XP in BedWars</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-yellow-400 mt-1 mr-2"></i>
+                                <span>Rank-Only Tournaments</span>
+                            </li>
+                        </ul>
+                        <button 
+    class="add-to-cart w-full minecraft-button bg-green-600 hover:bg-green-700 text-white py-3 rounded font-bold transition" 
+    data-item="Stone Rank" 
+    data-price="5.99" 
+    onclick="window.location.href='https://pyrixmc.mysellauth.com/checkout/04780e046bab6-0000006029588'">
+    <i class="fas fa-cart-plus mr-2"></i> Add to Cart
+</button>
+                    </div>
+                </div>
+                
+                <!-- Rank 5 -->
+                <div class="rank-card bg-gray-800 rounded-lg overflow-hidden shadow-lg transform transition hover:scale-105">
+                    <div class="bg-red-800 p-4">
+                        <h3 class="text-2xl font-bold text-center text-white">Pyrix Rank</h3>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-center mb-4">
+                            <span class="text-3xl font-bold text-red-400">$99.99</span>
+                        </div>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-red-400 mt-1 mr-2"></i>
+                                <span>All Emerald Rank perks</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-red-400 mt-1 mr-2"></i>
+                                <span>Priority Access to Full Servers</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-red-400 mt-1 mr-2"></i>
+                                <span>Access to all cosmetic items</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-red-400 mt-1 mr-2"></i>
+                                <span>+250,000 coins</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-red-400 mt-1 mr-2"></i>
+                                <span>Custom nickname color</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-red-400 mt-1 mr-2"></i>
+                                <span>Permission to speak to owners & devs.</span>
+                            </li>
+                        </ul>
+                        <button 
+    class="add-to-cart w-full minecraft-button bg-green-600 hover:bg-green-700 text-white py-3 rounded font-bold transition" 
+    data-item="Stone Rank" 
+    data-price="5.99" 
+    onclick="window.location.href='https://pyrixmc.mysellauth.com/checkout/1dda66000d759-0000006029607'">
+    <i class="fas fa-cart-plus mr-2"></i> Add to Cart
+</button>
+                    </div>
+                </div>
+            </div>
+            <script>
+document.querySelectorAll('.store-category-btn').forEach(button => {
+    button.addEventListener('click', () => {
+        const category = button.getAttribute('data-category');
+        
+        // Hide all categories
+        document.querySelectorAll('.store-category').forEach(section => {
+            section.classList.add('hidden');
+        });
+        
+        // Show the selected category
+        const targetSection = document.getElementById(category);
+        if (targetSection) {
+            targetSection.classList.remove('hidden');
+            targetSection.scrollIntoView({ behavior: 'smooth' }); // optional
+        }
+    });
+});
+</script>
+
+            <!-- Store Items (Coins) - Hidden by default -->
+            <div id="coins" class="store-category hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Coin Package 1 -->
+                <div class="rank-card bg-gray-800 rounded-lg overflow-hidden shadow-lg transform transition hover:scale-105">
+                    <div class="bg-yellow-600 p-4">
+                        <h3 class="text-2xl font-bold text-center text-white">Coin Package</h3>
+                        <p class="text-center text-yellow-200">5,000 Coins</p>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-center mb-4">
+                            <span class="text-3xl font-bold text-yellow-400">$2.99</span>
+                        </div>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-yellow-400 mt-1 mr-2"></i>
+                                <span>Instantly delivered</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-yellow-400 mt-1 mr-2"></i>
+                                <span>Use in our shop</span>
+                            </li>
+                        </ul>
+                        <button 
+    class="add-to-cart w-full minecraft-button bg-yellow-600 hover:bg-yellow-700 text-white py-3 rounded font-bold transition" 
+    data-item="Stone Rank" 
+    data-price="5.99" 
+    onclick="window.location.href='https://pyrixmc.mysellauth.com/checkout/6ff40ab59b230-0000006029809'">
+    <i class="fas fa-cart-plus mr-2"></i> Add to Cart
+</button>
+                    </div>
+                </div>
+                
+                <!-- Coin Package 2 -->
+                <div class="rank-card bg-gray-800 rounded-lg overflow-hidden shadow-lg transform transition hover:scale-105">
+                    <div class="bg-yellow-600 p-4">
+                        <h3 class="text-2xl font-bold text-center text-white">Coin Package</h3>
+                        <p class="text-center text-yellow-200">15,000 Coins</p>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-center mb-4">
+                            <span class="text-3xl font-bold text-yellow-400">$7.99</span>
+                            <p class="text-sm text-green-400 mt-1">Save 10%</p>
+                        </div>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-yellow-400 mt-1 mr-2"></i>
+                                <span>Instantly delivered</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-yellow-400 mt-1 mr-2"></i>
+                                <span>Use in our shop</span>
+                            </li>
+                        </ul>
+                        <button 
+    class="add-to-cart w-full minecraft-button bg-yellow-600 hover:bg-yellow-700 text-white py-3 rounded font-bold transition" 
+    data-item="Stone Rank" 
+    data-price="5.99" 
+    onclick="window.location.href='https://pyrixmc.mysellauth.com/checkout/aa572487369eb-0000006029818'">
+    <i class="fas fa-cart-plus mr-2"></i> Add to Cart
+</button>
+                    </div>
+                </div>
+                
+                <!-- Coin Package 3 -->
+                <div class="rank-card bg-gray-800 rounded-lg overflow-hidden shadow-lg transform transition hover:scale-105">
+                    <div class="bg-yellow-600 p-4">
+                        <h3 class="text-2xl font-bold text-center text-white">Coin Package</h3>
+                        <p class="text-center text-yellow-200">50,000 Coins</p>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-center mb-4">
+                            <span class="text-3xl font-bold text-yellow-400">$24.99</span>
+                            <p class="text-sm text-green-400 mt-1">Save 16%</p>
+                        </div>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-yellow-400 mt-1 mr-2"></i>
+                                <span>Instantly delivered</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-yellow-400 mt-1 mr-2"></i>
+                                <span>Use in our shop</span>
+                            </li>
+                        </ul>
+<button 
+    class="add-to-cart w-full minecraft-button bg-yellow-600 hover:bg-yellow-700 text-white py-3 rounded font-bold transition" 
+    data-item="Stone Rank" 
+    data-price="5.99" 
+    onclick="window.location.href='https://pyrixmc.mysellauth.com/checkout/2096c08651bb1-0000006029830'">
+    <i class="fas fa-cart-plus mr-2"></i> Add to Cart
+</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Store Items (Cosmetics) - Hidden by default -->
+            <div id="cosmetics" class="store-category hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Cosmetic 1 -->
+                <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg transform transition hover:scale-105">
+                    <div class="bg-pink-600 p-4">
+                        <h3 class="text-2xl font-bold text-center text-white">Particle Pack</h3>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-center mb-4">
+                            <span class="text-3xl font-bold text-pink-400">$3.99</span>
+                        </div>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-pink-400 mt-1 mr-2"></i>
+                                <span>5 unique particle effects</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-pink-400 mt-1 mr-2"></i>
+                                <span>Change anytime</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-pink-400 mt-1 mr-2"></i>
+                                <span>Works with all ranks</span>
+                            </li>
+                        </ul>
+                        <button class="add-to-cart w-full minecraft-button bg-pink-600 hover:bg-pink-700 text-white py-3 rounded font-bold transition" data-item="Particle Pack" data-price="3.99">
+                            <i class="fas fa-cart-plus mr-2"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Cosmetic 2 -->
+                <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg transform transition hover:scale-105">
+                    <div class="bg-blue-600 p-4">
+                        <h3 class="text-2xl font-bold text-center text-white">Pet Bundle</h3>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-center mb-4">
+                            <span class="text-3xl font-bold text-blue-400">$5.99</span>
+                        </div>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-blue-400 mt-1 mr-2"></i>
+                                <span>3 exclusive pets</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-blue-400 mt-1 mr-2"></i>
+                                <span>Custom name your pets</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-blue-400 mt-1 mr-2"></i>
+                                <span>Pets follow you everywhere</span>
+                            </li>
+                        </ul>
+                        <button class="add-to-cart w-full minecraft-button bg-blue-600 hover:bg-blue-700 text-white py-3 rounded font-bold transition" data-item="Pet Bundle" data-price="5.99">
+                            <i class="fas fa-cart-plus mr-2"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Cosmetic 3 -->
+                <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg transform transition hover:scale-105">
+                    <div class="bg-purple-600 p-4">
+                        <h3 class="text-2xl font-bold text-center text-white">Wings Cosmetic</h3>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-center mb-4">
+                            <span class="text-3xl font-bold text-purple-400">$7.99</span>
+                        </div>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-purple-400 mt-1 mr-2"></i>
+                                <span>Beautiful wing designs</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-purple-400 mt-1 mr-2"></i>
+                                <span>10 different styles</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-purple-400 mt-1 mr-2"></i>
+                                <span>Toggle on/off anytime</span>
+                            </li>
+                        </ul>
+                        <button class="add-to-cart w-full minecraft-button bg-purple-600 hover:bg-purple-700 text-white py-3 rounded font-bold transition" data-item="Wings Cosmetic" data-price="7.99">
+                            <i class="fas fa-cart-plus mr-2"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Store Items (Bundles) - Hidden by default -->
+            <div id="bundles" class="store-category hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Bundle 1 -->
+                <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg transform transition hover:scale-105">
+                    <div class="bg-gradient-to-r from-green-600 to-blue-600 p-4">
+                        <h3 class="text-2xl font-bold text-center text-white">Survival Bundle</h3>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-center mb-4">
+                            <span class="text-xl line-through text-gray-400">$25.00</span>
+                            <span class="text-3xl font-bold text-green-400 ml-2">$19.99</span>
+                            <p class="text-sm text-yellow-400 mt-1">Save 20%</p>
+                        </div>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-400 mt-1 mr-2"></i>
+                                <span>Iron Rank</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-400 mt-1 mr-2"></i>
+                                <span>25,000 coins</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-400 mt-1 mr-2"></i>
+                                <span>Particle Pack</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-400 mt-1 mr-2"></i>
+                                <span>Starter kit in-game</span>
+                            </li>
+                        </ul>
+                        <button class="add-to-cart w-full minecraft-button bg-green-600 hover:bg-green-700 text-white py-3 rounded font-bold transition" data-item="Survival Bundle" data-price="19.99">
+                            <i class="fas fa-cart-plus mr-2"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Bundle 2 -->
+                <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg transform transition hover:scale-105">
+                    <div class="bg-gradient-to-r from-purple-600 to-red-600 p-4">
+                        <h3 class="text-2xl font-bold text-center text-white">VIP Bundle</h3>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-center mb-4">
+                            <span class="text-xl line-through text-gray-400">$50.00</span>
+                            <span class="text-3xl font-bold text-purple-400 ml-2">$39.99</span>
+                            <p class="text-sm text-yellow-400 mt-1">Save 20%</p>
+                        </div>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-purple-400 mt-1 mr-2"></i>
+                                <span>Diamond Rank</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-purple-400 mt-1 mr-2"></i>
+                                <span>75,000 coins</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-purple-400 mt-1 mr-2"></i>
+                                <span>All cosmetic items</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-purple-400 mt-1 mr-2"></i>
+                                <span>VIP only events</span>
+                            </li>
+                        </ul>
+                        <button class="add-to-cart w-full minecraft-button bg-purple-600 hover:bg-purple-700 text-white py-3 rounded font-bold transition" data-item="VIP Bundle" data-price="39.99">
+                            <i class="fas fa-cart-plus mr-2"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Bundle 3 -->
+                <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg transform transition hover:scale-105">
+                    <div class="bg-gradient-to-r from-yellow-600 to-red-600 p-4">
+                        <h3 class="text-2xl font-bold text-center text-white">Ultimate Bundle</h3>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-center mb-4">
+                            <span class="text-xl line-through text-gray-400">$120.00</span>
+                            <span class="text-3xl font-bold text-yellow-400 ml-2">$89.99</span>
+                            <p class="text-sm text-yellow-400 mt-1">Save 25%</p>
+                        </div>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-yellow-400 mt-1 mr-2"></i>
+                                <span>Obsidian Rank</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-yellow-400 mt-1 mr-2"></i>
+                                <span>200,000 coins</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-yellow-400 mt-1 mr-2"></i>
+                                <span>All current and future cosmetics</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-yellow-400 mt-1 mr-2"></i>
+                                <span>Custom title in chat</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-yellow-400 mt-1 mr-2"></i>
+                                <span>Exclusive in-game tag</span>
+                            </li>
+                        </ul>
+                        <button class="add-to-cart w-full minecraft-button bg-yellow-600 hover:bg-yellow-700 text-white py-3 rounded font-bold transition" data-item="Ultimate Bundle" data-price="89.99">
+                            <i class="fas fa-cart-plus mr-2"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Payment Methods -->
+            <div class="mt-12 bg-gray-800 p-6 rounded-lg">
+                <h3 class="text-2xl font-bold mb-4 text-center text-green-400">Accepted Payment Methods</h3>
+                <div class="flex flex-wrap justify-center items-center gap-6">
+                    <i class="fab fa-cc-paypal text-4xl text-blue-500"></i>
+                    <i class="fab fa-cc-visa text-4xl text-blue-900"></i>
+                    <i class="fab fa-cc-mastercard text-4xl text-red-600"></i>
+                    <i class="fab fa-bitcoin text-4xl text-yellow-500"></i>
+                    <img src="https://cdn.discordapp.com/attachments/1353425249839878156/1403599266794045580/litecoin-logo-png-transparent.png?ex=6898232e&is=6896d1ae&hm=8bd6b5a4e43bc83adb286549dc44bf5c2f0f3ac09926b39de60e9e81ecfcaba3&" alt="Litecoin" class="h-10">
+                </div>
+                <p class="text-center text-gray-400 mt-4">All payments are secure and processed through our trusted partners.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shopping Cart Modal -->
+    <div id="cart-modal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 hidden">
+        <div class="bg-gray-800 rounded-lg w-full max-w-2xl max-h-[80vh] overflow-y-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-2xl font-bold text-green-400">Your Cart</h3>
+                    <button id="close-cart" class="text-gray-400 hover:text-white">
+                        <i class="fas fa-times text-2xl"></i>
+                    </button>
+                </div>
+                
+                <div id="cart-items" class="mb-6">
+                    <!-- Cart items will be added here dynamically -->
+                    <div class="text-center text-gray-400 py-8" id="empty-cart-message">
+                        <i class="fas fa-shopping-cart text-4xl mb-4"></i>
+                        <p class="text-xl">Your cart is empty</p>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-700 p-4 rounded-lg mb-6">
+                    <div class="flex justify-between mb-2">
+                        <span class="font-semibold">Subtotal:</span>
+                        <span id="cart-subtotal">$0.00</span>
+                    </div>
+                    <div class="flex justify-between mb-2">
+                        <span class="font-semibold">Tax (if applicable):</span>
+                        <span id="cart-tax">$0.00</span>
+                    </div>
+                    <div class="flex justify-between text-xl font-bold">
+                        <span>Total:</span>
+                        <span id="cart-total">$0.00</span>
+                    </div>
+                </div>
+                
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <button class="minecraft-button flex-1 bg-gray-600 hover:bg-gray-500 text-white py-3 rounded font-bold">
+                        <i class="fas fa-arrow-left mr-2"></i> Continue Shopping
+                    </button>
+                    <button id="checkout-btn" class="minecraft-button flex-1 bg-green-600 hover:bg-green-700 text-white py-3 rounded font-bold disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                        <i class="fas fa-lock mr-2"></i> Secure Checkout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-gray-800">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12 text-green-400">About Pyrix MC</h2>
+            
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="lg:w-1/2">
+                    <img src="https://static.wixstatic.com/media/76fe2d_89546f2879bc4f73b6a0fef0223e8333~mv2.jpg/v1/fill/w_980,h_551,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/76fe2d_89546f2879bc4f73b6a0fef0223e8333~mv2.jpg" alt="Pyrix MC Server" class="rounded-lg shadow-xl w-full">
+                </div>
+                
+                <div class="lg:w-1/2">
+                    <h3 class="text-2xl font-semibold mb-4 text-green-300">Our Story</h3>
+                    <p class="text-gray-300 mb-4">
+                        Pyrix MC was founded in 2025 by a group of passionate Minecraft players who wanted to create a server that combined the best of pvp servers into an enjoyable cracked & premium minecraft experience.
+                    </p>
+                    <!--<p class="text-gray-300 mb-4">
+                        What started as a small community has grown into one of the most popular Minecraft servers, with thousands of players joining every month to experience our custom gameplay.
+                    </p>-->
+                    <p class="text-gray-300 mb-6">
+                        Our team is committed to providing a fair, fun, and engaging Minecraft experience for players of all ages and skill levels.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-gray-700 p-4 rounded-lg">
+                            <div class="text-green-400 text-2xl mb-2">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h4 class="font-bold mb-1">Friendly Community</h4>
+                            <p class="text-gray-300"></p>
+                        </div>
+                        <div class="bg-gray-700 p-4 rounded-lg">
+                            <div class="text-green-400 text-2xl mb-2">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <h4 class="font-bold mb-1">Since</h4>
+                            <p class="text-gray-300">2025</p>
+                        </div>
+                        <div class="bg-gray-700 p-4 rounded-lg">
+                            <div class="text-green-400 text-2xl mb-2">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <h4 class="font-bold mb-1">Anti-Cheat</h4>
+                            <p class="text-gray-300">99% cheater ban rate</p>
+                        </div>
+                        <div class="bg-gray-700 p-4 rounded-lg">
+                            <div class="text-green-400 text-2xl mb-2">
+                                <i class="fas fa-server"></i>
+                            </div>
+                            <h4 class="font-bold mb-1">Uptime</h4>
+                            <p class="text-gray-300">99.9%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!--<div class="mt-16">
+                <h3 class="text-2xl font-semibold mb-6 text-center text-green-300">Meet Our Team</h3>
+                
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    
+                    <div class="bg-gray-700 p-4 rounded-lg text-center">
+                        <img src="https://via.placeholder.com/150" alt="Team Member" class="w-24 h-24 rounded-full mx-auto mb-4 border-2 border-green-500">
+                        <h4 class="font-bold text-lg">Notch</h4>
+                        <p class="text-green-400 mb-2">Founder</p>
+                        <p class="text-sm text-gray-300">The visionary behind Pyrix MC, bringing years of Minecraft expertise</p>
+                    </div>
+                    
+                    
+                    <div class="bg-gray-700 p-4 rounded-lg text-center">
+                        <img src="https://via.placeholder.com/150" alt="Team Member" class="w-24 h-24 rounded-full mx-auto mb-4 border-2 border-green-500">
+                        <h4 class="font-bold text-lg">Pixel</h4>
+                        <p class="text-green-400 mb-2">Lead Developer</p>
+                        <p class="text-sm text-gray-300">Creates all our custom plugins and keeps the server running smoothly</p>
+                    </div>
+                    
+                    
+                    <div class="bg-gray-700 p-4 rounded-lg text-center">
+                        <img src="https://via.placeholder.com/150" alt="Team Member" class="w-24 h-24 rounded-full mx-auto mb-4 border-2 border-green-500">
+                        <h4 class="font-bold text-lg">Blocky</h4>
+                        <p class="text-green-400 mb-2">Build Team Lead</p>
+                        <p class="text-sm text-gray-300">Designs all our amazing server builds and spawn areas</p>
+                    </div>
+                    
+                    
+                    <div class="bg-gray-700 p-4 rounded-lg text-center">
+                        <img src="https://via.placeholder.com/150" alt="Team Member" class="w-24 h-24 rounded-full mx-auto mb-4 border-2 border-green-500">
+                        <h4 class="font-bold text-lg">Redstone</h4>
+                        <p class="text-green-400 mb-2">Community Manager</p>
+                        <p class="text-sm text-gray-300">Keeps our community engaged and organizes awesome events</p>
+                    </div>
+                    
+                    
+                    <div class="bg-gray-700 p-4 rounded-lg text-center">
+                        <img src="https://via.placeholder.com/150" alt="Team Member" class="w-24 h-24 rounded-full mx-auto mb-4 border-2 border-green-500">
+                        <h4 class="font-bold text-lg">Creeper</h4>
+                        <p class="text-green-400 mb-2">Support Specialist</p>
+                        <p class="text-sm text-gray-300">Always ready to help players with any issues they encounter</p>
+                    </div>
+                    
+                    
+                    <div class="bg-gray-700 p-4 rounded-lg text-center">
+                        <img src="https://via.placeholder.com/150" alt="Team Member" class="w-24 h-24 rounded-full mx-auto mb-4 border-2 border-green-500">
+                        <h4 class="font-bold text-lg">Ender</h4>
+                        <p class="text-green-400 mb-2">Admin Team</p>
+                        <p class="text-sm text-gray-300">Ensures fair play and keeps the server safe for everyone</p>
+                    </div>
+                    
+                    
+                    <div class="bg-gray-700 p-4 rounded-lg text-center">
+                        <img src="https://via.placeholder.com/150" alt="Team Member" class="w-24 h-24 rounded-full mx-auto mb-4 border-2 border-green-500">
+                        <h4 class="font-bold text-lg">Diamond</h4>
+                        <p class="text-green-400 mb-2">Moderator</p>
+                        <p class="text-sm text-gray-300">Helps maintain a friendly and welcoming community</p>
+                    </div>
+                    
+                    
+                    <div class="bg-gray-700 p-4 rounded-lg text-center">
+                        <img src="https://via.placeholder.com/150" alt="Team Member" class="w-24 h-24 rounded-full mx-auto mb-4 border-2 border-green-500">
+                        <h4 class="font-bold text-lg">Nether</h4>
+                        <p class="text-green-400 mb-2">Event Coordinator</p>
+                        <p class="text-sm text-gray-300">Creates exciting weekly events and competitions</p>
+                    </div>-->
+<script>
+function showTab(tabName) {
+  // Hide all tabs
+  document.querySelectorAll('.tab-content').forEach(tab => {
+    tab.classList.remove('active');
+  });
+  
+  // Show selected tab
+  document.getElementById(`${tabName}-tab`).classList.add('active');
+  
+  // Update button states
+  document.getElementById('ranks-btn').classList.toggle('active', tabName === 'ranks');
+  document.getElementById('coins-btn').classList.toggle('active', tabName === 'coins');
+}
+</script>
+</body>
+</html>
